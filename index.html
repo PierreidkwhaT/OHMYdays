@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierre</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: white;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff6347;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #ff1493;
+        }
+
+        .name-list {
+            margin-top: 50px;
+            padding: 20px;
+            border: 2px solid #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            max-width: 400px;
+            text-align: left;
+            margin-bottom: 50px;
+        }
+
+        .name-list input {
+            margin: 5px 0;
+            padding: 5px;
+            width: 100%;
+            font-size: 1.2em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+
+        .name-list button {
+            padding: 10px 15px;
+            font-size: 1.2em;
+            background-color: #32cd32;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .name-list button:hover {
+            background-color: #228b22;
+        }
+
+        .name {
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        /* Stars Falling Animation */
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>eeuwa nigga</h1>
+    <p>schrijf je naam hier beneden dan(proof dat ik het ben hallo ik ben Pierre)</p>
+
+    <!-- Name List Section -->
+    <div class="name-list">
+        <input type="text" id="nameInput" placeholder="Enter your name" />
+        <button onclick="addName()">Add Name</button>
+        <div id="nameContainer"></div>
+    </div>
+
+    <!-- JavaScript to create falling stars and handle names -->
+    <script>
+        // Create falling stars
+        function createFallingStars() {
+            const numStars = 100; // Number of falling stars
+            const body = document.body;
+
+            for (let i = 0; i < numStars; i++) {
+                let star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+                star.style.animationDuration = `${Math.random() * 1 + 1}s`; // Faster falling speed
+                star.style.animationDelay = `${Math.random() * 2}s`; // Random delay for staggered fall
+                body.appendChild(star);
+            }
+        }
+
+        // Call the function to create falling stars when the page loads
+        window.onload = createFallingStars;
+
+        // Function to add a name to the list
+        function addName() {
+            const nameInput = document.getElementById('nameInput');
+            const nameContainer = document.getElementById('nameContainer');
+            const name = nameInput.value.trim();
+
+            if (name) {
+                // Create a new div element to display the name
+                const nameElement = document.createElement('div');
+                nameElement.classList.add('name');
+                nameElement.textContent = name;
+
+                // Append the name to the container
+                nameContainer.appendChild(nameElement);
+
+                // Clear the input field
+                nameInput.value = '';
+            }
+        }
+    </script>
+
+</body>
+</html>
