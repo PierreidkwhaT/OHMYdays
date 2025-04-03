@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funny Page with Falling Stars</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            background-color: #111;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff6347;
+            z-index: 1;
+            position: relative;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #ff1493;
+            z-index: 1;
+            position: relative;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #32cd32;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 1;
+            position: relative;
+        }
+
+        button:hover {
+            background-color: #228b22;
+        }
+
+        img {
+            max-width: 400px;
+            margin-top: 20px;
+            border-radius: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Stars Falling Animation */
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Different sizes and speeds for falling stars */
+        .star:nth-child(odd) {
+            animation-duration: 3s;
+            animation-delay: -2s;
+        }
+
+        .star:nth-child(even) {
+            animation-duration: 5s;
+            animation-delay: -3s;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Fun Zone!</h1>
+    <p>Here, we take silliness seriously.</p>
+    <button onclick="changeBackgroundColor()">Change Background Color!</button>
+
+    <img src="https://placekitten.com/400/300" alt="A cute kitten" id="kitten">
+
+    <!-- JavaScript to create falling stars -->
+    <script>
+        // Create falling stars on the page
+        function createFallingStars() {
+            const numStars = 100; // Number of falling stars
+            const body = document.body;
+
+            for (let i = 0; i < numStars; i++) {
+                let star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+                star.style.animationDuration = `${Math.random() * 4 + 3}s`; // Random speed between 3-7s
+                star.style.animationDelay = `${Math.random() * 5}s`; // Random delay for staggered fall
+                body.appendChild(star);
+            }
+        }
+
+        // Call the function to create falling stars
+        createFallingStars();
+
+        // Function to change background color
+        function changeBackgroundColor() {
+            const colors = ['#111', '#2b2b2b', '#000033', '#2f4f4f', '#191970'];
+            document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+
+</body>
+</html>
